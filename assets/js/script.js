@@ -1,7 +1,7 @@
 console.log("test")
 
 const mens = [
-    {image: "/assets/images/mens/1.jpg",
+    {image: "../images/mens/1.jpg",
     desc:"Summer Fashion",
     size:["S","M","L","XL"],
     price:"25"},
