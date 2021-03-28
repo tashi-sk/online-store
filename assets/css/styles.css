@@ -2,24 +2,40 @@
 
 body {
     margin:0;
-    padding:0;
-    height: 100vh;
+    padding:0!important;
+    box-sizing: border-box;
+    /* height: 100vh; */
+    width: 100vw;
+    overflow-x: hidden;
 }
-
+/*          nav-bar and icon         */
+.cart-icon{
+    font-size: 1.5rem;
+}
+#arrow {
+    margin-right: 5px;
+    padding: 0 10px;
+    position: absolute;
+    transition: 0.1s all ease-in-out;
+}
+.text-landing>button:hover #arrow {
+    transform: translateX(6px);
+}
 .landing {
-    
+    overflow-x: hidden;
     background-image: url(/assets/images/landing-image.jpg);
     background-position: center;
     background-size: cover;
-    width: 100%;
-    height: 80vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding:0!important;
 }
 
 .text-landing {
     font-family: 'Train One', cursive;
+    text-shadow: 1px 1px #5f5f5f;
     font-size: 1.8rem;
     font-weight: bold;
     display: flex;
@@ -27,8 +43,11 @@ body {
     align-items: center;
 }
 .text-landing>button {
-    line-height: 60px;
-    padding: 15px 30px;
+    text-align: center;
+    width: 200px;
+    position: relative;
+    line-height: 40px;
+    padding: 15px 40px 15px 30px;
     background-color: transparent;
     color: #fff;
     border: 2px solid #fff;
@@ -49,21 +68,57 @@ body {
 
 /*                  footer                   */
 footer {
+    border-top: 2px solid #696969;
+    padding: 0!important;
+}
+.footer-div {
+    margin: 0!important;
+}
+footer>div {
+    width: 100%;
+    text-align: center;
     padding: 30px;
     background-color: rgba(158, 158, 158, 0.651);
 }
 ul {
-    text-align: left;
+    padding:0!important;
     display: block;
     list-style: none;
     color: #ffffff;
     font-weight: bold;
 }
+ul>li{
+    transition: .5s all;
+}
+ul>li:hover {
+    color: rgba(36, 35, 35, 0.651);
+    transform: scale(1.1);
+}
 h5 {
-    text-align: left;
-    color: #ffffff;
+    color: #5f5f5f;
 }
 li {
     cursor: pointer;
     line-height: 30px;
+}
+
+.bottom-plate {
+    border-top: 2px solid #696969;
+    width: 100%;
+    background-color:  rgba(158, 158, 158, 0.651);
+}
+.bottom-plate>p {
+    cursor: default;
+    color: #ffffff;
+    margin:0!important;
+}
+.bottom-plate>p>span{
+    color: #5f5f5f;
+    font-weight: bold;
+}
+
+@media (max-width: 992px){
+    ul>li:hover{
+    transform: scale(1);
+}
 }
