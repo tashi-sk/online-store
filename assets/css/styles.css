@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Train+One&display=swap');
 
-body {
+html, body {
     margin:0;
     padding:0!important;
     box-sizing: border-box;
-    /* height: 100vh; */
+    min-height: 100%;
     width: 100vw;
     overflow-x: hidden;
 }
@@ -22,15 +22,19 @@ body {
     transform: translateX(6px);
 }
 .landing {
+    /* width: 100vw; */
+    /* height: 900px; */
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-content: center;
     overflow-x: hidden;
     background-image: url(/assets/images/landing-image.jpg);
     background-position: center;
     background-size: cover;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding:0!important;
+    text-align: center;
+    
 }
 
 .text-landing {
@@ -39,11 +43,10 @@ body {
     font-size: 1.8rem;
     font-weight: bold;
     display: flex;
-    justify-content: center;
     align-items: center;
 }
 .text-landing>button {
-    text-align: center;
+    /* text-align: center; */
     width: 200px;
     position: relative;
     line-height: 40px;
@@ -59,13 +62,68 @@ body {
     border-color: grey;
 }
 
-
 .line {
     width: 85%;
     background-color:#696969;
     height: 2px;
 }
 
+/*                  Product div                   */
+#product-div {
+    margin-top: 75px;
+    width: 65vw;
+    /* min-height: 70vh; */
+}
+
+#userSelectionBtn {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+#product-div>div>button {
+    text-align: center;
+    width: 200px;
+    position: relative;
+    line-height: 40px;
+    padding: 15px 40px 15px 30px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    transition: 1s all cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#product-div>div>button:hover {
+    background-color: #fff;
+    color: grey;
+    border-color: grey;
+}
+
+/*               Mens product div                 */
+#product-men {
+    display:flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    min-height: 700px;
+    width: 80%;
+    /* background-color: #ffffff; */
+    margin: 50px auto;
+}
+
+.prod-display {
+   /* margin: 0 40px; */
+   display: inline-table;
+}
+
+.prod-image{
+    width: 200px;
+    height: 250px;
+    background-size: cover;
+    background-position: center;
+}
+
+/* .desc {
+    background-color: #696969;
+    color: #fff;
+} */
 /*                  footer                   */
 footer {
     border-top: 2px solid #696969;
