@@ -29,7 +29,7 @@ html, body {
     justify-content: center;
     align-content: center;
     overflow-x: hidden;
-    background-image: url(/assets/images/landing-image.jpg);
+    background-image: url(../images/landing-image.jpg);
     background-position: center;
     background-size: cover;
     padding:0!important;
@@ -98,12 +98,12 @@ html, body {
 }
 
 /*               Mens product div                 */
-#product-men {
-    display:flex;
+#product-men, #product-women {
+    /* display:flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
     min-height: 700px;
-    width: 80%;
+    width: 80%; */
     /* background-color: #ffffff; */
     margin: 50px auto;
 }
@@ -111,6 +111,9 @@ html, body {
 .prod-display {
    /* margin: 0 40px; */
    display: inline-table;
+   color: #fff;
+   background-color: #999696b4;
+   border: 2px solid #ffffff;
 }
 
 .prod-image{
@@ -118,8 +121,16 @@ html, body {
     height: 250px;
     background-size: cover;
     background-position: center;
+    border-radius: 10px;
+    border: 2px solid rgb(66, 60, 60);
 }
 
+.card-body>h5{
+    font-size: 1.4rem;
+    color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+    padding: 5px 0;
+}
 /* .desc {
     background-color: #696969;
     color: #fff;
