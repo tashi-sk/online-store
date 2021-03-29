@@ -70,15 +70,14 @@ html, body {
 
 /*                  Product div                   */
 #product-div {
-    margin-top: 75px;
-    width: 65vw;
-    /* min-height: 70vh; */
+    margin: 75px auto 0 auto;
 }
 
 #userSelectionBtn {
-    display: flex;
+    margin-top: 120px;
+    /* display: flex;
     justify-content: center;
-    align-content: center;
+    align-content: center; */
 }
 #product-div>div>button {
     text-align: center;
