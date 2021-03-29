@@ -79,6 +79,10 @@ html, body {
     justify-content: center;
     align-content: center; */
 }
+
+#userSelectionBtn>button {
+    margin: 10px 0;
+}
 #product-div>div>button {
     text-align: center;
     width: 200px;
