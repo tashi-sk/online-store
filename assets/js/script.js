@@ -90,6 +90,10 @@ const mens = [
     }
 ];
 
+// variables to store orders by tag number in local storage
+var milgaya;
+var tag = [];
+
 const shopBtn = document.querySelector('#shopBtn');
 const mensBtn = document.querySelector('#mensBtn');
 const womenBtn = document.querySelector('#womenBtn');
@@ -120,11 +124,12 @@ if (mensBtn) {
 }
 // populate Men product div 
 function mensProduct() {
+    localStorage.getItem("tag");
     mensProductDiv.innerHTML = ``;
     womenProductDiv.classList.add('d-none');
     mensProductDiv.classList.remove('d-none');
     for (var i = 0; i < mens.length; i++) {
-        mensProductDiv.innerHTML += `<div class="card mb-4 prod-display" style="width: 20rem;">
+        mensProductDiv.innerHTML += `<div class="mb-4 prod-display" style="width: 20rem;">
                         <img src="${mens[i].image}" class="card-img-top prod-image mt-3 info" id="cart-item" alt="...">
                         <div class="card-body">
                             <h5 class="card-title info">${mens[i].desc}</h5>
@@ -149,12 +154,13 @@ if (womenBtn) {
 
 // populate women product div 
 function womenProduct() {
+    localStorage.getItem("tag");
     womenProductDiv.innerHTML = ``;
     mensProductDiv.classList.add('d-none')
     womenProductDiv.classList.remove('d-none');
     for (var i = 0; i < women.length; i++) {
         womenProductDiv.innerHTML += `
-                                    <div class="card mb-4 prod-display" style="width: 20rem;">
+                                    <div class="mb-4 prod-display" style="width: 20rem;">
                                     <img src="${women[i].image}" class="card-img-top prod-image mt-3 info" alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title info">${women[i].desc}</h5>
@@ -170,11 +176,6 @@ function womenProduct() {
     getInfo(prodbtn, women);
 }
 
-// variables to store orders by tag number in local storage
-var milgaya;
-var tag = [];
-var oldTag = [];
-
 // get the parent element of the clicked product
 const cartIconText = document.querySelector('#cart-icon-text');
 
@@ -189,63 +190,84 @@ function getInfo(btn, gender) {
     }
 }
 
-// load the local storage for shopping cart quantity
-
-function onLoadCartNumbers() {
-    let productNumbers = localStorage.getItem('cartNumbers');
-
-    if (productNumbers) {
-        cartIconText.innerText = productNumbers;
-        if (document.querySelector('#cart-div')) {
-            document.querySelector('#cart-div').innerText = `${localStorage.getItem('tag')}`;
-        }
-    } else {
-        cartIconText.innerText = "Empty";
-    }
-
-}
-
 // add quantity to local storage for cart 
 function addProdToStorage(clothe, gender) {
-    // converting elemenst inner text from parent element div to array
-    milgaya = clothe.split("\n")
+    // converting elements inner text from parent element div to array
+    milgaya = clothe.split("\n");
     console.log("the item click is", clothe);
     // checking if tag value match the product tag from arrays
     for (i = 0; i < gender.length; i++) {
         if (milgaya[6] == gender[i].tag) {
             tag.push(milgaya[6]);
-            if (localStorage.getItem('tag')) {
-                localStorage.setItem("tag", JSON.stringify(tag));
-            }
-            else {
-                localStorage.setItem("tag", JSON.stringify(milgaya[6]));
-            }
+            console.log(tag);
+            localStorage.setItem("tag", JSON.stringify(tag));
+            // document.querySelector('#cart-div').innerText = `${tag}`;
+        }
+        else {
+            localStorage.setItem("tag", milgaya[6]);
+            // document.querySelector('#cart-div').innerText = `${milgaya[6]}`;
         }
     }
     updateCart();
 }
 
 function updateCart() {
+    document.querySelector('.cart-page').classList.remove('d-none');
     let productNumbers = localStorage.getItem('cartNumbers');
-
     productNumbers = parseInt(productNumbers);
-
+    cartIconText.style.color = 'green';
     if (productNumbers) {
+        localStorage.setItem('tag', JSON.stringify(tag));
         localStorage.setItem('cartNumbers', productNumbers + 1);
+        // document.querySelector('#cart-div').innerText = `${tag}`;
         cartIconText.innerText = productNumbers + 1;
     } else {
         localStorage.setItem('cartNumbers', 1);
+        localStorage.setItem('tag', JSON.stringify(milgaya[6]));
+        // document.querySelector('#cart-div').innerText = `${tag}`;
         cartIconText.innerText = 1;
     }
+    cartDisplay(mens);
 }
 
-const crossCart = document.querySelector('#cross-cart');
-const cartItem = document.querySelector('#cart-item');
-const cartDesc = document.querySelector('#cart-desc');
-const cartQuantity = document.querySelector('#cart-quantity');
-const cartSize = document.querySelector('#cart-size');
-const cartPrice = document.querySelector('#cart-price');
+document.querySelector('.cross').addEventListener('click',function(){
+    document.querySelector('.cart-page').classList.add('d-none');
+}) 
+var basket = [];
+function  cartDisplay(gender) {
+    // console.log(typeof tag)
+    document.querySelector('#cart-div').innerHTML=``;
+    for ( j=0;j<tag.length;j++){
+        for(t=0;t<gender.length;t++)
+        if(tag[j] === gender[t].tag){
+            basket.push(gender[t]);
+            document.querySelector('#cart-div').innerHTML +=`<div class="card cart mb-4" style="width: 20rem;">
+                                    <div class="ml-3">
+                                    <img src="${gender[t].image}" 
+                                    class="card-img-top mt-3 info" alt="...">
+                                    </div>
+                                    <div class="card-body">
+                                        <p class="card-text info">Price: $ ${gender[t].price}</p>
+                                    </div>
+                                    </div>`;
+        }
+    }
 
+}
+// const crossCart = document.querySelector('#cross-cart');
+// const cartItem = document.querySelector('#cart-item');
+// const cartDesc = document.querySelector('#cart-desc');
+// const cartQuantity = document.querySelector('#cart-quantity');
+// const cartSize = document.querySelector('#cart-size');
+// const cartPrice = document.querySelector('#cart-price');
+// const divCart = document.querySelector('#cart-div');
+// load the local storage for shopping cart quantity
+
+function onLoadCartNumbers() {
+    localStorage.clear();
+    cartIconText.innerText = "Empty";
+    cartIconText.style.color = 'red';
+}
 
 // update the cart quantity on page loading from local storage
 onLoadCartNumbers();
